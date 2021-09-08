@@ -6,10 +6,16 @@ namespace Zork
 
     {
 
-        private static string[] Rooms = { "Forest", "West of House", "Behind House", "Clearing", "Canyon View" };
+        private static string[,] Rooms = {
+            {"Dense Woods", "North of House", "Clearing" },
+            { "Forest", "West of House", "Behind House" },
+            {"Rocky Trail", "South of House", "Canyon View"}
+        };
+
+        private static int LocationRow = 1;
         private static int LocationColumn = 1;
 
-        private static string Location => Rooms[LocationColumn];
+        private static string Location => Rooms[LocationRow, LocationColumn];
 
         static void Main(string[] args)
         {
@@ -63,7 +69,7 @@ namespace Zork
                 case Commands.SOUTH:
                     break;
 
-                case Commands.EAST when LocationColumn < Rooms.Length - 1:
+                case Commands.EAST when LocationColumn < Rooms.GetLength(1) - 1:
                     LocationColumn++;
                     didMove = true;
                     break;
