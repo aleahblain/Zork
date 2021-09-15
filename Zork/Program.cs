@@ -12,19 +12,19 @@ namespace Zork
             {"Rocky Trail", "South of House", "Canyon View"}
         };
 
-        private static int LocationRow = 1;
-        private static int LocationColumn = 1;
+        private static (int Row, int Column) Location;
 
-        private static string Location => Rooms[LocationRow, LocationColumn];
+        private static string Place => Rooms[Location.Row, Location.Column];
 
         static void Main(string[] args)
         {
+
             Console.WriteLine("Welcome to Zork!");
             Commands command = Commands.UNKNOWN;
 
             while(command != Commands.QUIT)
             {
-                Console.Write($"{Location}\n> ");
+                Console.Write($"{Place}\n> ");
                 command = ToCommand(Console.ReadLine().Trim());
                 string outputString;
 
@@ -65,17 +65,23 @@ namespace Zork
             switch (command)
             {
 
-                case Commands.NORTH:
-                case Commands.SOUTH:
-                    break;
-
-                case Commands.EAST when LocationColumn < Rooms.GetLength(1) - 1:
-                    LocationColumn++;
+                case Commands.NORTH when Location.Row > 0:
+                    Location.Row--;
                     didMove = true;
                     break;
 
-                case Commands.WEST when LocationColumn > 0:
-                    LocationColumn--;
+                case Commands.SOUTH when Location.Row < Rooms.GetLength(0) - 1:
+                    Location.Row++;
+                    didMove = true;
+                    break;
+
+                case Commands.EAST when Location.Column < Rooms.GetLength(1) - 1:
+                    Location.Column++;
+                    didMove = true;
+                    break;
+
+                case Commands.WEST when Location.Column > 0:
+                    Location.Column--;
                     didMove = true; 
                     break;
 
