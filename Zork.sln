@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31205.134
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zork", "Zork\Zork.csproj", "{1FB36944-94F2-4B68-B598-B11ABB264D65}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zork", "Zork\Zork.csproj", "{1FB36944-94F2-4B68-B598-B11ABB264D65}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zork.Common", "Zork.Common\Zork.Common.csproj", "{06CAE58A-EABB-4073-97E9-9574B4B21683}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zork.Builder", "Zork.Builder\Zork.Builder.csproj", "{C4384AB8-10BC-4CC7-96A5-6E32E7C7F8CB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{1FB36944-94F2-4B68-B598-B11ABB264D65}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1FB36944-94F2-4B68-B598-B11ABB264D65}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1FB36944-94F2-4B68-B598-B11ABB264D65}.Release|Any CPU.Build.0 = Release|Any CPU
+		{06CAE58A-EABB-4073-97E9-9574B4B21683}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{06CAE58A-EABB-4073-97E9-9574B4B21683}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{06CAE58A-EABB-4073-97E9-9574B4B21683}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{06CAE58A-EABB-4073-97E9-9574B4B21683}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C4384AB8-10BC-4CC7-96A5-6E32E7C7F8CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4384AB8-10BC-4CC7-96A5-6E32E7C7F8CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4384AB8-10BC-4CC7-96A5-6E32E7C7F8CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4384AB8-10BC-4CC7-96A5-6E32E7C7F8CB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
