@@ -41,12 +41,13 @@ namespace Zork.Builder
             this.RoomsGroupBox = new System.Windows.Forms.GroupBox();
             this.RoomsDeleteButton = new System.Windows.Forms.Button();
             this.RoomsAddButton = new System.Windows.Forms.Button();
-            this.RoomsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.roomNameLabel = new System.Windows.Forms.Label();
-            this.roomNameTextBox = new System.Windows.Forms.TextBox();
             this.roomDescriptionTextBox = new System.Windows.Forms.TextBox();
             this.roomDescriptionLabel = new System.Windows.Forms.Label();
+            this.roomNameTextBox = new System.Windows.Forms.TextBox();
+            this.roomNameLabel = new System.Windows.Forms.Label();
+            this.worldViewModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.roomsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             menuStrip1 = new System.Windows.Forms.MenuStrip();
             MainMenuStrip = new System.Windows.Forms.ToolStripMenuItem();
             newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -55,8 +56,9 @@ namespace Zork.Builder
             exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             this.RoomsGroupBox.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.RoomsBindingSource)).BeginInit();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.worldViewModelBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.roomsBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -115,11 +117,14 @@ namespace Zork.Builder
             // 
             // roomsListBox
             // 
+            this.roomsListBox.DataSource = this.roomsBindingSource;
+            this.roomsListBox.DisplayMember = "Name";
             this.roomsListBox.FormattingEnabled = true;
             this.roomsListBox.Location = new System.Drawing.Point(6, 19);
             this.roomsListBox.Name = "roomsListBox";
             this.roomsListBox.Size = new System.Drawing.Size(188, 355);
             this.roomsListBox.TabIndex = 0;
+            this.roomsListBox.ValueMember = "Description";
             // 
             // RoomsGroupBox
             // 
@@ -145,6 +150,7 @@ namespace Zork.Builder
             // 
             // RoomsAddButton
             // 
+            this.RoomsAddButton.Enabled = false;
             this.RoomsAddButton.Location = new System.Drawing.Point(38, 382);
             this.RoomsAddButton.Name = "RoomsAddButton";
             this.RoomsAddButton.Size = new System.Drawing.Size(75, 23);
@@ -165,22 +171,6 @@ namespace Zork.Builder
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             // 
-            // roomNameLabel
-            // 
-            this.roomNameLabel.AutoSize = true;
-            this.roomNameLabel.Location = new System.Drawing.Point(7, 19);
-            this.roomNameLabel.Name = "roomNameLabel";
-            this.roomNameLabel.Size = new System.Drawing.Size(35, 13);
-            this.roomNameLabel.TabIndex = 0;
-            this.roomNameLabel.Text = "&Name";
-            // 
-            // roomNameTextBox
-            // 
-            this.roomNameTextBox.Location = new System.Drawing.Point(10, 36);
-            this.roomNameTextBox.Name = "roomNameTextBox";
-            this.roomNameTextBox.Size = new System.Drawing.Size(309, 20);
-            this.roomNameTextBox.TabIndex = 1;
-            // 
             // roomDescriptionTextBox
             // 
             this.roomDescriptionTextBox.Location = new System.Drawing.Point(10, 92);
@@ -196,6 +186,31 @@ namespace Zork.Builder
             this.roomDescriptionLabel.Size = new System.Drawing.Size(60, 13);
             this.roomDescriptionLabel.TabIndex = 2;
             this.roomDescriptionLabel.Text = "&Description";
+            // 
+            // roomNameTextBox
+            // 
+            this.roomNameTextBox.Location = new System.Drawing.Point(10, 36);
+            this.roomNameTextBox.Name = "roomNameTextBox";
+            this.roomNameTextBox.Size = new System.Drawing.Size(309, 20);
+            this.roomNameTextBox.TabIndex = 1;
+            // 
+            // roomNameLabel
+            // 
+            this.roomNameLabel.AutoSize = true;
+            this.roomNameLabel.Location = new System.Drawing.Point(7, 19);
+            this.roomNameLabel.Name = "roomNameLabel";
+            this.roomNameLabel.Size = new System.Drawing.Size(35, 13);
+            this.roomNameLabel.TabIndex = 0;
+            this.roomNameLabel.Text = "&Name";
+            // 
+            // worldViewModelBindingSource
+            // 
+            this.worldViewModelBindingSource.DataSource = typeof(Zork.Builder.ViewModels.WorldViewModel);
+            // 
+            // roomsBindingSource
+            // 
+            this.roomsBindingSource.DataMember = "Rooms";
+            this.roomsBindingSource.DataSource = this.worldViewModelBindingSource;
             // 
             // MainForm
             // 
@@ -213,9 +228,10 @@ namespace Zork.Builder
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
             this.RoomsGroupBox.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.RoomsBindingSource)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.worldViewModelBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.roomsBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -227,12 +243,13 @@ namespace Zork.Builder
         private System.Windows.Forms.GroupBox RoomsGroupBox;
         private System.Windows.Forms.Button RoomsDeleteButton;
         private System.Windows.Forms.Button RoomsAddButton;
-        private System.Windows.Forms.BindingSource RoomsBindingSource;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label roomNameLabel;
         private System.Windows.Forms.TextBox roomDescriptionTextBox;
         private System.Windows.Forms.Label roomDescriptionLabel;
         private System.Windows.Forms.TextBox roomNameTextBox;
+        private System.Windows.Forms.BindingSource roomsBindingSource;
+        private System.Windows.Forms.BindingSource worldViewModelBindingSource;
     }
 }
 

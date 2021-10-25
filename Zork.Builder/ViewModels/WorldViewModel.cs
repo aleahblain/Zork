@@ -4,11 +4,51 @@ using Zork;
 
 namespace Zork.Builder.ViewModels
 {
-    public class WorldViewModel
+    internal class WorldViewModel
     {
-        public BindingList<Room> Rooms { get; set; }
 
+        public bool _WorldIsLoaded;
+        public BindingList<Room> _Rooms;
         private World _world;
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public BindingList<Room> Rooms
+        {
+            get
+            {
+                return _Rooms;
+            }
+            set
+            {
+                if(_Rooms != value)
+                {
+                    _Rooms = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Rooms)));
+                }
+            }
+        }
+
+        public WorldViewModel(World world = null)
+        {
+            World = world;
+        }
+
+        public bool WorldIsLoaded
+        {
+            get
+            {
+                return _WorldIsLoaded;
+            }
+
+            set
+            {   
+                if (_WorldIsLoaded != value)
+                {
+                    _WorldIsLoaded = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(WorldIsLoaded)));
+                }
+            }
+        }
 
         public World World
         {

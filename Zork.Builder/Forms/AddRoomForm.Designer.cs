@@ -37,6 +37,7 @@ namespace Zork.Builder.Forms
             // 
             // OkayButton
             // 
+            this.OkayButton.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.OkayButton.Location = new System.Drawing.Point(177, 51);
             this.OkayButton.Name = "OkayButton";
             this.OkayButton.Size = new System.Drawing.Size(75, 23);
@@ -75,7 +76,6 @@ namespace Zork.Builder.Forms
             this.AcceptButton = this.OkayButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.CancelButton = this.CancelButton;
             this.ClientSize = new System.Drawing.Size(345, 87);
             this.Controls.Add(this.NameTextBox);
             this.Controls.Add(this.NameLabel);

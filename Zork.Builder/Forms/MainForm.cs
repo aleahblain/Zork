@@ -8,29 +8,88 @@ using Zork.Builder.ViewModels;
 
 namespace Zork.Builder
 {
+    internal interface IBlinkable
+    {
+        int Frequency { get; }
+    }
+
     public partial class MainForm : Form
     {
-        internal WorldViewModel ViewModel { get; private set; }
 
         private WorldViewModel _viewModel;
+        private Control[] _worldDependentControls;
+        private ToolStripMenuItem[] _worldDependentMenuItems;
+
+        internal WorldViewModel ViewModel
+        {
+            get => _viewModel;
+            set
+            {
+                if(_viewModel != value)
+                {
+                    _viewModel = value;
+                    worldViewModelBindingSource.DataSource = _viewModel;
+                }
+            }
+        }
+
+        private bool IsWorldLoaded
+        {
+            get
+            {
+                return _viewModel.WorldIsLoaded;
+            }
+            set
+            {
+                _viewModel.WorldIsLoaded = value;
+
+                foreach(var control in _worldDependentControls)
+                {
+                    control.Enabled = _viewModel.WorldIsLoaded;
+                }
+
+                foreach (var menuItem in _worldDependentMenuItems)
+                {
+                    menuItem.Enabled = _viewModel.WorldIsLoaded;
+                }
+            }
+        }
 
         public MainForm()
         {
             InitializeComponent();
             ViewModel = new WorldViewModel();
+
+            _worldDependentControls = new Control[]
+            {
+                RoomsAddButton,
+                RoomsDeleteButton
+            };
+
+            IsWorldLoaded = false;
         }
 
-        private void newToolStripMenuItem_Click(object sender, EventArgs e)
+        private void RoomsDeleteButton_Click(object sender, EventArgs e)
         {
-
+            MessageBox.Show("Not yet implemented.");
         }
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                string jsonString = File.ReadAllText(openFileDialog.FileName);
-                ViewModel.World = JsonConvert.DeserializeObject<World>(jsonString);
+                try
+                {
+                    string jsonString = File.ReadAllText(openFileDialog.FileName);
+                    ViewModel.World = JsonConvert.DeserializeObject<World>(jsonString);
+                    ViewModel.WorldIsLoaded = true;
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Zork Builder", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                                
             }
         }
 
@@ -45,14 +104,14 @@ namespace Zork.Builder
             {
                 if(addRoomForm.ShowDialog() == DialogResult.OK)
                 {
-                    //Room room = new Room(addRoomForm.RoomName);
+                    Room room = new Room();
                 }
             }
         }
 
-        private void RoomsDeleteButton_Click(object sender, EventArgs e)
+        private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Not yet implemented.");
+
         }
     }
 }
