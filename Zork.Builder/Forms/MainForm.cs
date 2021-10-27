@@ -109,9 +109,11 @@ namespace Zork.Builder
             }
         }
 
-        private void newToolStripMenuItem_Click(object sender, EventArgs e)
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            string filename = "TestFile.json";
+            _viewModel.SaveWorld(filename);
         }
+
     }
 }

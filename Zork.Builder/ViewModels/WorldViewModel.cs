@@ -1,6 +1,8 @@
 ﻿using System;
 using System.ComponentModel;
 using Zork;
+using Newtonsoft.Json;
+using System.IO;
 
 namespace Zork.Builder.ViewModels
 {
@@ -47,6 +49,30 @@ namespace Zork.Builder.ViewModels
                     _WorldIsLoaded = value;
                     PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(WorldIsLoaded)));
                 }
+            }
+        }
+
+        public void SaveWorld(string filename)
+        {
+            if (!WorldIsLoaded)
+            {
+                throw new InvalidOperationException("No world is loaded.");
+            }
+
+            if (string.IsNullOrWhiteSpace(filename))
+            {
+                throw new InvalidOperationException("Invalid name.");
+            }
+
+            JsonSerializer serializer = new JsonSerializer
+            {
+                Formatting = Formatting.Indented
+            };
+
+            using (StreamWriter streamWriter = new StreamWriter(filename))
+            using (JsonWriter jsonWriter = new JsonTextWriter(streamWriter))
+            {
+                serializer.Serialize(jsonWriter, _world);
             }
         }
 
