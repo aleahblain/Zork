@@ -6,12 +6,12 @@ using System.IO;
 
 namespace Zork.Builder.ViewModels
 {
-    internal class WorldViewModel
+    internal class GameViewModel
     {
 
-        public bool _WorldIsLoaded;
+        public bool _GameIsLoaded;
         public BindingList<Room> _Rooms;
-        private World _world;
+        private Game _game;
         public event PropertyChangedEventHandler PropertyChanged;
 
         public BindingList<Room> Rooms
@@ -30,31 +30,31 @@ namespace Zork.Builder.ViewModels
             }
         }
 
-        public WorldViewModel(World world = null)
+        public GameViewModel(Game game = null)
         {
-            World = world;
+            Game = game;
         }
 
-        public bool WorldIsLoaded
+        public bool GameIsLoaded
         {
             get
             {
-                return _WorldIsLoaded;
+                return _GameIsLoaded;
             }
 
             set
             {   
-                if (_WorldIsLoaded != value)
+                if (_GameIsLoaded != value)
                 {
-                    _WorldIsLoaded = value;
-                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(WorldIsLoaded)));
+                    _GameIsLoaded = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(GameIsLoaded)));
                 }
             }
         }
 
         public void SaveWorld(string filename)
         {
-            if (!WorldIsLoaded)
+            if (!GameIsLoaded)
             {
                 throw new InvalidOperationException("No world is loaded.");
             }
@@ -72,20 +72,20 @@ namespace Zork.Builder.ViewModels
             using (StreamWriter streamWriter = new StreamWriter(filename))
             using (JsonWriter jsonWriter = new JsonTextWriter(streamWriter))
             {
-                serializer.Serialize(jsonWriter, _world);
+                serializer.Serialize(jsonWriter, _game);
             }
         }
 
-        public World World
+        public Game Game
         {
             set
             {
-                if(_world != value)
+                if(_game != value)
                 {
-                    _world = value;
-                    if(_world != null)
+                    _game = value;
+                    if(_game != null)
                     {
-                        //Rooms = new BindingList<Room>(_world.Rooms);
+                        Rooms = new BindingList<Room>(_game.World.Rooms);
 
                     } else
                     {
