@@ -112,12 +112,10 @@ namespace Zork.Builder
             }
         }
 
-        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string filename = "TestFile.json";
-            _viewModel.SaveWorld(filename);
-        }
 
+<<<<<<< HEAD
         private void roomsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             RoomsDeleteButton.Enabled = roomsListBox.SelectedItem != null;
@@ -131,6 +129,8 @@ namespace Zork.Builder
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Close();
+=======
+>>>>>>> parent of 1c3ff37 (Zork Builder (IN PROGRESS))
         }
     }
 }

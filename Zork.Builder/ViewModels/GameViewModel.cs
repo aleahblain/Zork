@@ -1,8 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
 using Zork;
-using Newtonsoft.Json;
-using System.IO;
 
 namespace Zork.Builder.ViewModels
 {
@@ -52,6 +50,7 @@ namespace Zork.Builder.ViewModels
             }
         }
 
+<<<<<<< HEAD:Zork.Builder/ViewModels/GameViewModel.cs
         public void SaveWorld(string filename)
         {
             if (!GameIsLoaded)
@@ -77,6 +76,9 @@ namespace Zork.Builder.ViewModels
         }
 
         public Game Game
+=======
+        public World World
+>>>>>>> parent of 1c3ff37 (Zork Builder (IN PROGRESS)):Zork.Builder/ViewModels/WorldViewModel.cs
         {
             set
             {
