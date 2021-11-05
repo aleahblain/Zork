@@ -4,12 +4,12 @@ using Zork;
 
 namespace Zork.Builder.ViewModels
 {
-    internal class GameViewModel
+    internal class WorldViewModel
     {
 
-        public bool _GameIsLoaded;
+        public bool _WorldIsLoaded;
         public BindingList<Room> _Rooms;
-        private Game _game;
+        private World _world;
         public event PropertyChangedEventHandler PropertyChanged;
 
         public BindingList<Room> Rooms
@@ -28,24 +28,24 @@ namespace Zork.Builder.ViewModels
             }
         }
 
-        public GameViewModel(Game game = null)
+        public WorldViewModel(World world = null)
         {
-            Game = game;
+            World = world;
         }
 
-        public bool GameIsLoaded
+        public bool WorldIsLoaded
         {
             get
             {
-                return _GameIsLoaded;
+                return _WorldIsLoaded;
             }
 
             set
             {   
-                if (_GameIsLoaded != value)
+                if (_WorldIsLoaded != value)
                 {
-                    _GameIsLoaded = value;
-                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(GameIsLoaded)));
+                    _WorldIsLoaded = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(WorldIsLoaded)));
                 }
             }
         }
@@ -53,7 +53,7 @@ namespace Zork.Builder.ViewModels
 <<<<<<< HEAD:Zork.Builder/ViewModels/GameViewModel.cs
         public void SaveWorld(string filename)
         {
-            if (!GameIsLoaded)
+            if (!WorldIsLoaded)
             {
                 throw new InvalidOperationException("No world is loaded.");
             }
@@ -71,23 +71,27 @@ namespace Zork.Builder.ViewModels
             using (StreamWriter streamWriter = new StreamWriter(filename))
             using (JsonWriter jsonWriter = new JsonTextWriter(streamWriter))
             {
-                serializer.Serialize(jsonWriter, _game);
+                serializer.Serialize(jsonWriter, _world);
             }
         }
 
+<<<<<<< HEAD:Zork.Builder/ViewModels/GameViewModel.cs
         public Game Game
 =======
         public World World
 >>>>>>> parent of 1c3ff37 (Zork Builder (IN PROGRESS)):Zork.Builder/ViewModels/WorldViewModel.cs
+=======
+        public World World
+>>>>>>> parent of 0b242a5 (Zork Builder (IN PROGRESS)):Zork.Builder/ViewModels/WorldViewModel.cs
         {
             set
             {
-                if(_game != value)
+                if(_world != value)
                 {
-                    _game = value;
-                    if(_game != null)
+                    _world = value;
+                    if(_world != null)
                     {
-                        Rooms = new BindingList<Room>(_game.World.Rooms);
+                        //Rooms = new BindingList<Room>(_world.Rooms);
 
                     } else
                     {

@@ -74,16 +74,24 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
 <<<<<<< HEAD
+<<<<<<< HEAD
     <Compile Include="UserControls\NeighborControls.cs">
+=======
+    <Compile Include="UserControls\EquippedItemControl.cs">
+>>>>>>> parent of 0b242a5 (Zork Builder (IN PROGRESS))
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserControls\NeighborControls.Designer.cs">
-      <DependentUpon>NeighborControls.cs</DependentUpon>
+    <Compile Include="UserControls\EquippedItemControl.Designer.cs">
+      <DependentUpon>EquippedItemControl.cs</DependentUpon>
     </Compile>
+<<<<<<< HEAD
     <Compile Include="ViewModels\GameViewModel.cs" />
 =======
     <Compile Include="ViewModels\WorldViewModel.cs" />
 >>>>>>> parent of 1c3ff37 (Zork Builder (IN PROGRESS))
+=======
+    <Compile Include="ViewModels\WorldViewModel.cs" />
+>>>>>>> parent of 0b242a5 (Zork Builder (IN PROGRESS))
     <EmbeddedResource Include="Forms\AddRoomForm.resx">
       <DependentUpon>AddRoomForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -100,13 +108,18 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
 <<<<<<< HEAD
+<<<<<<< HEAD
     <EmbeddedResource Include="UserControls\NeighborControls.resx">
       <DependentUpon>NeighborControls.cs</DependentUpon>
+=======
+    <EmbeddedResource Include="UserControls\EquippedItemControl.resx">
+      <DependentUpon>EquippedItemControl.cs</DependentUpon>
+>>>>>>> parent of 0b242a5 (Zork Builder (IN PROGRESS))
     </EmbeddedResource>
 =======
 >>>>>>> parent of 1c3ff37 (Zork Builder (IN PROGRESS))
     <None Include="packages.config" />
-    <None Include="Properties\DataSources\Zork.Builder.ViewModels.GameViewModel.datasource" />
+    <None Include="Properties\DataSources\Zork.Builder.ViewModels.WorldViewModel.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
