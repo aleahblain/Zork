@@ -132,5 +132,10 @@ namespace Zork.Builder
         {
             Close();
         }
+
+        private void bindingSource1_CurrentChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
