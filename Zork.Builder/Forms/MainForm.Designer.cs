@@ -29,7 +29,6 @@ namespace Zork.Builder
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.ToolStripMenuItem MainMenuStrip;
             System.Windows.Forms.ToolStripMenuItem newToolStripMenuItem;
             System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
@@ -43,6 +42,7 @@ namespace Zork.Builder
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.neighborsGroupBox = new System.Windows.Forms.GroupBox();
             this.roomDescriptionTextBox = new System.Windows.Forms.TextBox();
             this.roomDescriptionLabel = new System.Windows.Forms.Label();
             this.roomNameTextBox = new System.Windows.Forms.TextBox();
@@ -59,7 +59,6 @@ namespace Zork.Builder
             this.ItemsDeleteButton = new System.Windows.Forms.Button();
             this.ItemsAddButton = new System.Windows.Forms.Button();
             this.ItemsListBox = new System.Windows.Forms.ListBox();
-            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             MainMenuStrip = new System.Windows.Forms.ToolStripMenuItem();
             newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -74,7 +73,6 @@ namespace Zork.Builder
             this.tabPage2.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // MainMenuStrip
@@ -176,6 +174,7 @@ namespace Zork.Builder
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.neighborsGroupBox);
             this.groupBox1.Controls.Add(this.roomDescriptionTextBox);
             this.groupBox1.Controls.Add(this.roomDescriptionLabel);
             this.groupBox1.Controls.Add(this.roomNameTextBox);
@@ -185,12 +184,22 @@ namespace Zork.Builder
             this.groupBox1.Size = new System.Drawing.Size(551, 433);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Current Room";
+            // 
+            // neighborsGroupBox
+            // 
+            this.neighborsGroupBox.Location = new System.Drawing.Point(10, 132);
+            this.neighborsGroupBox.Name = "neighborsGroupBox";
+            this.neighborsGroupBox.Size = new System.Drawing.Size(535, 285);
+            this.neighborsGroupBox.TabIndex = 16;
+            this.neighborsGroupBox.TabStop = false;
+            this.neighborsGroupBox.Text = "Neighbors";
             // 
             // roomDescriptionTextBox
             // 
             this.roomDescriptionTextBox.Location = new System.Drawing.Point(10, 92);
             this.roomDescriptionTextBox.Name = "roomDescriptionTextBox";
-            this.roomDescriptionTextBox.Size = new System.Drawing.Size(309, 20);
+            this.roomDescriptionTextBox.Size = new System.Drawing.Size(535, 20);
             this.roomDescriptionTextBox.TabIndex = 3;
             // 
             // roomDescriptionLabel
@@ -204,7 +213,7 @@ namespace Zork.Builder
             // 
             // roomNameTextBox
             // 
-            this.roomNameTextBox.Location = new System.Drawing.Point(10, 36);
+            this.roomNameTextBox.Location = new System.Drawing.Point(10, 44);
             this.roomNameTextBox.Name = "roomNameTextBox";
             this.roomNameTextBox.Size = new System.Drawing.Size(309, 20);
             this.roomNameTextBox.TabIndex = 1;
@@ -212,7 +221,7 @@ namespace Zork.Builder
             // roomNameLabel
             // 
             this.roomNameLabel.AutoSize = true;
-            this.roomNameLabel.Location = new System.Drawing.Point(7, 19);
+            this.roomNameLabel.Location = new System.Drawing.Point(7, 28);
             this.roomNameLabel.Name = "roomNameLabel";
             this.roomNameLabel.Size = new System.Drawing.Size(35, 13);
             this.roomNameLabel.TabIndex = 0;
@@ -339,10 +348,6 @@ namespace Zork.Builder
             this.ItemsListBox.TabIndex = 0;
             this.ItemsListBox.ValueMember = "Description";
             // 
-            // bindingSource1
-            // 
-            this.bindingSource1.CurrentChanged += new System.EventHandler(this.bindingSource1_CurrentChanged);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -366,7 +371,6 @@ namespace Zork.Builder
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -396,7 +400,7 @@ namespace Zork.Builder
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem saveAsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
-        private System.Windows.Forms.BindingSource bindingSource1;
+        private System.Windows.Forms.GroupBox neighborsGroupBox;
     }
 }
 

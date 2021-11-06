@@ -6,13 +6,14 @@ using System.IO;
 
 namespace Zork.Builder.ViewModels
 {
-    internal class GameViewModel
+    internal class GameViewModel : INotifyPropertyChanged
     {
 
         public bool _GameIsLoaded;
         public BindingList<Room> _Rooms;
         private Game _game;
         public event PropertyChangedEventHandler PropertyChanged;
+        public string Filename { get; set; }
 
         public BindingList<Room> Rooms
         {
@@ -30,36 +31,12 @@ namespace Zork.Builder.ViewModels
             }
         }
 
-        public GameViewModel(Game game = null)
+        public GameViewModel(Game game = null) => Game = game;
+
+        public void SaveWorld()
         {
-            Game = game;
-        }
 
-        public bool GameIsLoaded
-        {
-            get
-            {
-                return _GameIsLoaded;
-            }
-
-            set
-            {   
-                if (_GameIsLoaded != value)
-                {
-                    _GameIsLoaded = value;
-                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(GameIsLoaded)));
-                }
-            }
-        }
-
-        public void SaveWorld(string filename)
-        {
-            if (!GameIsLoaded)
-            {
-                throw new InvalidOperationException("No world is loaded.");
-            }
-
-            if (string.IsNullOrWhiteSpace(filename))
+            if (string.IsNullOrWhiteSpace(Filename))
             {
                 throw new InvalidOperationException("Invalid name.");
             }
@@ -69,7 +46,7 @@ namespace Zork.Builder.ViewModels
                 Formatting = Formatting.Indented
             };
 
-            using (StreamWriter streamWriter = new StreamWriter(filename))
+            using (StreamWriter streamWriter = new StreamWriter(Filename))
             using (JsonWriter jsonWriter = new JsonTextWriter(streamWriter))
             {
                 serializer.Serialize(jsonWriter, _game);
@@ -93,6 +70,16 @@ namespace Zork.Builder.ViewModels
                     }
                 }
             }
+        }
+
+        public void RemoveRoom (Room room)
+        {
+            foreach (Room r in Rooms)
+            {
+                //r.Neighbors.Remove(room);
+            }
+
+            Rooms.Remove(room);
         }
     }
 }

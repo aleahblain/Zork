@@ -29,18 +29,18 @@ namespace Zork.Builder.UserControls
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.NeighborTestBox = new System.Windows.Forms.TextBox();
             this.NeighborsComboBox = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
-            // textBox1
+            // NeighborTestBox
             // 
-            this.textBox1.Location = new System.Drawing.Point(4, 3);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(236, 20);
-            this.textBox1.TabIndex = 0;
-            this.textBox1.Text = "Test!";
+            this.NeighborTestBox.Location = new System.Drawing.Point(4, 3);
+            this.NeighborTestBox.Name = "NeighborTestBox";
+            this.NeighborTestBox.ReadOnly = true;
+            this.NeighborTestBox.Size = new System.Drawing.Size(236, 20);
+            this.NeighborTestBox.TabIndex = 0;
+            this.NeighborTestBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // NeighborsComboBox
             // 
@@ -56,9 +56,9 @@ namespace Zork.Builder.UserControls
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.NeighborsComboBox);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.NeighborTestBox);
             this.Name = "NeighborControls";
-            this.Size = new System.Drawing.Size(243, 55);
+            this.Size = new System.Drawing.Size(237, 55);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -66,7 +66,7 @@ namespace Zork.Builder.UserControls
 
         #endregion
 
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox NeighborTestBox;
         private System.Windows.Forms.ComboBox NeighborsComboBox;
     }
 }

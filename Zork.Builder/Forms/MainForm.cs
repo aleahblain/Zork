@@ -22,6 +22,8 @@ namespace Zork.Builder
         private Control[] _worldDependentControls;
         private ToolStripMenuItem[] _worldDependentMenuItems;
         private readonly Dictionary<Directions, NeighborControls> mNeighborsControlMap;
+        private bool _isGameLoaded;
+
         public MainForm()
         {
             InitializeComponent();
@@ -39,10 +41,14 @@ namespace Zork.Builder
                 saveAsToolStripMenuItem,
             };
 
-            IsGameLoaded = false;
+            mNeighborsControlMap = new Dictionary<Directions, NeighborControls> 
+            { Directions.EAST, eastNeighbor},
+
+
+          _isGameLoaded = false;
         }
 
-        internal GameViewModel ViewModel
+        private GameViewModel ViewModel
         {
             get => _viewModel;
             set
@@ -57,22 +63,20 @@ namespace Zork.Builder
 
         private bool IsGameLoaded
         {
-            get
-            {
-                return _viewModel.GameIsLoaded;
-            }
+            get => _isGameLoaded;
+            
             set
             {
-                _viewModel.GameIsLoaded = value;
+                _isGameLoaded = value;
 
                 foreach(var control in _worldDependentControls)
                 {
-                    control.Enabled = _viewModel.GameIsLoaded;
+                    control.Enabled = _isGameLoaded;
                 }
 
                 foreach (var menuItem in _worldDependentMenuItems)
                 {
-                    menuItem.Enabled = _viewModel.GameIsLoaded;
+                    menuItem.Enabled = _isGameLoaded;
                 }
             }
         }
@@ -112,11 +116,7 @@ namespace Zork.Builder
             }
         }
 
-        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            string filename = "TestFile.json";
-            _viewModel.SaveWorld(filename);
-        }
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e) => ViewModel.SaveWorld();
 
         private void roomsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
