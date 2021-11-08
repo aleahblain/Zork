@@ -9,16 +9,16 @@ namespace Zork
     public class Room : IEquatable<Room>
     {
         [JsonProperty(Order = 1)]
-        public string Name { get; set; }
+        public string Name { get; private set; }
 
         [JsonProperty(Order = 2)]
-        public string Description { get; set; }
+        public string Description { get; private set; }
 
         [JsonProperty(PropertyName = "Neighbors", Order = 3)]
         private Dictionary<Directions, string> NeighborNames { get; set; }
 
         [JsonIgnore]
-        public Dictionary<Directions, Room> Neighbors { get; set; } 
+        public IReadOnlyDictionary<Directions, Room> Neighbors { get; private set; } 
 
         public static bool operator ==(Room lhs, Room rhs)
         {

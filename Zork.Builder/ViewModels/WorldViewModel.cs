@@ -4,18 +4,13 @@ using Zork;
 
 namespace Zork.Builder.ViewModels
 {
-<<<<<<< HEAD:Zork.Builder/ViewModels/WorldViewModel.cs
     internal class WorldViewModel
-=======
-    internal class GameViewModel : INotifyPropertyChanged
->>>>>>> UI:Zork.Builder/ViewModels/GameViewModel.cs
     {
 
         public bool _WorldIsLoaded;
         public BindingList<Room> _Rooms;
         private World _world;
         public event PropertyChangedEventHandler PropertyChanged;
-        public string Filename { get; set; }
 
         public BindingList<Room> Rooms
         {
@@ -33,7 +28,6 @@ namespace Zork.Builder.ViewModels
             }
         }
 
-<<<<<<< HEAD:Zork.Builder/ViewModels/WorldViewModel.cs
         public WorldViewModel(World world = null)
         {
             World = world;
@@ -65,14 +59,6 @@ namespace Zork.Builder.ViewModels
             }
 
             if (string.IsNullOrWhiteSpace(filename))
-=======
-        public GameViewModel(Game game = null) => Game = game;
-
-        public void SaveWorld()
-        {
-
-            if (string.IsNullOrWhiteSpace(Filename))
->>>>>>> UI:Zork.Builder/ViewModels/GameViewModel.cs
             {
                 throw new InvalidOperationException("Invalid name.");
             }
@@ -82,7 +68,7 @@ namespace Zork.Builder.ViewModels
                 Formatting = Formatting.Indented
             };
 
-            using (StreamWriter streamWriter = new StreamWriter(Filename))
+            using (StreamWriter streamWriter = new StreamWriter(filename))
             using (JsonWriter jsonWriter = new JsonTextWriter(streamWriter))
             {
                 serializer.Serialize(jsonWriter, _world);
@@ -113,16 +99,6 @@ namespace Zork.Builder.ViewModels
                     }
                 }
             }
-        }
-
-        public void RemoveRoom (Room room)
-        {
-            foreach (Room r in Rooms)
-            {
-                //r.Neighbors.Remove(room);
-            }
-
-            Rooms.Remove(room);
         }
     }
 }

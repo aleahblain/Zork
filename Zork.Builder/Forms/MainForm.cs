@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
 using Newtonsoft.Json;
 using Zork;
 using Zork.Builder.Forms;
-using Zork.Builder.UserControls;
 using Zork.Builder.ViewModels;
 
 namespace Zork.Builder
@@ -18,37 +16,11 @@ namespace Zork.Builder
     public partial class MainForm : Form
     {
 
-        private GameViewModel _viewModel;
+        private WorldViewModel _viewModel;
         private Control[] _worldDependentControls;
         private ToolStripMenuItem[] _worldDependentMenuItems;
-        private readonly Dictionary<Directions, NeighborControls> mNeighborsControlMap;
-        private bool _isGameLoaded;
 
-        public MainForm()
-        {
-            InitializeComponent();
-            ViewModel = new GameViewModel();
-
-            _worldDependentControls = new Control[]
-            {
-                RoomsAddButton,
-                RoomsDeleteButton
-            };
-
-            _worldDependentMenuItems = new ToolStripMenuItem[]
-            {
-                saveToolStripMenuItem,
-                saveAsToolStripMenuItem,
-            };
-
-            mNeighborsControlMap = new Dictionary<Directions, NeighborControls> 
-            { Directions.EAST, eastNeighbor},
-
-
-          _isGameLoaded = false;
-        }
-
-        private GameViewModel ViewModel
+        internal WorldViewModel ViewModel
         {
             get => _viewModel;
             set
@@ -56,29 +28,45 @@ namespace Zork.Builder
                 if(_viewModel != value)
                 {
                     _viewModel = value;
-                    gameViewModelBindingSource.DataSource = _viewModel;
+                    worldViewModelBindingSource.DataSource = _viewModel;
                 }
             }
         }
 
-        private bool IsGameLoaded
+        private bool IsWorldLoaded
         {
-            get => _isGameLoaded;
-            
+            get
+            {
+                return _viewModel.WorldIsLoaded;
+            }
             set
             {
-                _isGameLoaded = value;
+                _viewModel.WorldIsLoaded = value;
 
                 foreach(var control in _worldDependentControls)
                 {
-                    control.Enabled = _isGameLoaded;
+                    control.Enabled = _viewModel.WorldIsLoaded;
                 }
 
                 foreach (var menuItem in _worldDependentMenuItems)
                 {
-                    menuItem.Enabled = _isGameLoaded;
+                    menuItem.Enabled = _viewModel.WorldIsLoaded;
                 }
             }
+        }
+
+        public MainForm()
+        {
+            InitializeComponent();
+            ViewModel = new WorldViewModel();
+
+            _worldDependentControls = new Control[]
+            {
+                RoomsAddButton,
+                RoomsDeleteButton
+            };
+
+            IsWorldLoaded = false;
         }
 
         private void RoomsDeleteButton_Click(object sender, EventArgs e)
@@ -93,8 +81,8 @@ namespace Zork.Builder
                 try
                 {
                     string jsonString = File.ReadAllText(openFileDialog.FileName);
-                    ViewModel.Game = JsonConvert.DeserializeObject<Game>(jsonString);
-                    ViewModel.GameIsLoaded = true;
+                    ViewModel.World = JsonConvert.DeserializeObject<World>(jsonString);
+                    ViewModel.WorldIsLoaded = true;
 
                 }
                 catch (Exception ex)
@@ -103,6 +91,11 @@ namespace Zork.Builder
                 }
                                 
             }
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Close();
         }
 
         private void RoomsAddButton_Click(object sender, EventArgs e)
@@ -116,8 +109,11 @@ namespace Zork.Builder
             }
         }
 
-        private void saveToolStripMenuItem_Click(object sender, EventArgs e) => ViewModel.SaveWorld();
+        private void newToolStripMenuItem_Click(object sender, EventArgs e)
+        {
 
+<<<<<<< HEAD
+<<<<<<< HEAD
         private void roomsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             RoomsDeleteButton.Enabled = roomsListBox.SelectedItem != null;
@@ -131,11 +127,10 @@ namespace Zork.Builder
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Close();
+=======
+>>>>>>> parent of 1c3ff37 (Zork Builder (IN PROGRESS))
         }
-
-        private void bindingSource1_CurrentChanged(object sender, EventArgs e)
-        {
-
-        }
+=======
+>>>>>>> parent of 0b242a5 (Zork Builder (IN PROGRESS))
     }
 }
