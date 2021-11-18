@@ -1,13 +1,14 @@
 ﻿using System;
-using System.Linq;
 using System.Collections.Generic;
+using System.ComponentModel;
 using Newtonsoft.Json;
-using Zork.Common;
 
 namespace Zork
 {
-    public class Room : IEquatable<Room>
+    public class Room : IEquatable<Room>, INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
+
         [JsonProperty(Order = 1)]
         public string Name { get; private set; }
 
@@ -18,7 +19,9 @@ namespace Zork
         private Dictionary<Directions, string> NeighborNames { get; set; }
 
         [JsonIgnore]
-        public IReadOnlyDictionary<Directions, Room> Neighbors { get; private set; } 
+        public IReadOnlyDictionary<Directions, Room> Neighbors { get; private set; }
+
+        private Dictionary<Directions, Room> _neighbors = new Dictionary<Directions, Room>();
 
         public static bool operator ==(Room lhs, Room rhs)
         {
@@ -32,7 +35,7 @@ namespace Zork
                 return false;
             }
 
-            return lhs.Name == rhs.Name;
+            return string.Compare(lhs.Name, rhs.Name, ignoreCase: true) == 0;
         }
 
         public static bool operator !=(Room lhs, Room rhs) => !(lhs == rhs);
@@ -45,12 +48,27 @@ namespace Zork
 
         public override int GetHashCode() => Name.GetHashCode();
 
-        public void UpdateNeighbors(World world) => Neighbors = (from entry in NeighborNames
-                                                                 let room = world.RoomsByName.GetValueOrDefault(entry.Value)
-                                                                 where room != null
-                                                                 select (Direction: entry.Key, Room: room))
-                                                                 .ToDictionary(pair => pair.Direction, pair => pair.Room);
+        public void UpdateNeighbors(World world)
+        {
+            _neighbors.Clear();
+            foreach (var entry in NeighborNames)
+            {
+                _neighbors.Add(entry.Key, world.RoomsByName[entry.Value]);
+            }
+        }
 
+        public void RemoveNeighbor(Directions direction)
+        {
+            _neighbors.Remove(direction);
+            NeighborNames.Remove(direction);
+        }
+
+        public void AssignNeighbor(Directions direction, Room neighbor)
+        {
+            _neighbors[direction] = neighbor;
+            NeighborNames[direction] = neighbor.Name;
+        }
 
     }
+
 }
