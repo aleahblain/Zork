@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <BaseOutputPath>C:\Users\lagig\Documents\GitHub\Zork\Zork.Unity\Assets</BaseOutputPath>
   </PropertyGroup>
 
   <ItemGroup>
